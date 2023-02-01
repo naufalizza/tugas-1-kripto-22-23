@@ -1,10 +1,4 @@
-//import {num2char, char2num} from './helper.js';
-function char2num(c){
-    return c.toLowerCase().charCodeAt(0)-97
-}
-function num2char(n){
-    return String.fromCharCode(97+n).toUpperCase()
-}
+import {num2char, char2num} from "./helper.js"
 
 let plaintext = "Azizah gapake h ramadhani"
 let key = "jijah"
@@ -13,7 +7,7 @@ let key = "jijah"
 /* fungsi enkripsi menggunakan auto key
 plaintext bebas dan key bebas  
 */
-function encrypt_auto_key(plaintext, key){
+export function encrypt_auto_key(plaintext, key){
     plaintext = plaintext.replace(/[^A-Za-z0-9]/g, "")
     var ciphertext = ""
     //console.log(plaintext)
@@ -33,7 +27,7 @@ function encrypt_auto_key(plaintext, key){
 /* fungsi dekripsi auto key vigenere cipher
 plaintext bebas dan key bebas  
 */
-function decrypt_auto_key(ciphertext, key){
+export function decrypt_auto_key(ciphertext, key){
     ciphertext = ciphertext.replace(/[^A-Za-z0-9]/g, "")
     var plaintext = ""
     //console.log(ciphertext)
