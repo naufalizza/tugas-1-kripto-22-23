@@ -10,8 +10,9 @@ function num2char(n){
     return String.fromCharCode(97+n).toUpperCase()
 }
 
+// Vigenere Standard
 function encrypt_vigenere(p,k){
-    p = p.replace(/[^A-Za-z0-9]/g, "")
+    p = p.replace(/[^A-Za-z]/g, "")
     // console.log(p.length)
     // console.log(k.length)
     let c = "";
@@ -41,6 +42,23 @@ function decrypt_vigenere(c,k){
     return p
 }
 
+// Extended Vigenere
+function encrypt_extended_vigenere(p,k){
+    let c = "";
+    for (let p_idx=0; p_idx<p.length; p_idx++){
+        const k_idx = p_idx%k.length;
+        const current_p_code = p[p_idx].charCodeAt(0);
+        const current_k_code = k[k_idx].charCodeAt(0);
+        const current_c_code = (current_p_code+current_k_code)%256
+        c += String.fromCharCode(current_c_code);
+    }
+    return c
+}
+function decrypt_extended_vigenere(p,k){
+    
+}
+
+// Playfair
 function generate_playfair_key_table(k){
     k = [... new Set(k.toUpperCase().replace(/[J]/g, "").split(""))]
     // console.log("k =", k)
@@ -64,7 +82,6 @@ function generate_playfair_key_table(k){
     }
     return key_table
 }
-
 function generate_bigram(t, uncommon_letter){
     let bigram_t = t[0]
     for (let i = 1; i<t.length; i++){
@@ -90,7 +107,7 @@ function generate_bigram(t, uncommon_letter){
 }
 function encrypt_playfair(p,k){
     const UNCOMMON_LETTER = "X"
-    p = p.replace(/[^A-Za-z0-9]/g, "").toUpperCase().replace(/[J]/g, "I")
+    p = p.replace(/[^A-Za-z]/g, "").toUpperCase().replace(/[J]/g, "I")
     const key_table = generate_playfair_key_table(k)
     // console.log("KEY TABLE =",key_table)
     // console.log(p)
