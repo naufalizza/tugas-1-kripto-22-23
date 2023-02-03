@@ -54,8 +54,16 @@ function encrypt_extended_vigenere(p,k){
     }
     return c
 }
-function decrypt_extended_vigenere(p,k){
-    
+function decrypt_extended_vigenere(c,k){
+    let p = "";
+    for (let c_idx=0; c_idx<c.length; c_idx++){
+        const k_idx = c_idx%k.length;
+        const current_c_code = c[c_idx].charCodeAt(0);
+        const current_k_code = k[k_idx].charCodeAt(0);
+        const current_p_code = (current_c_code-current_k_code+256)%256
+        p += String.fromCharCode(current_p_code);
+    }
+    return p
 }
 
 // Playfair
