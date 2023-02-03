@@ -38,7 +38,7 @@ export function decrypt_vigenere(c,k){
 }
 
 // Extended Vigenere
-function encrypt_extended_vigenere(p,k){
+export function encrypt_extended_vigenere(p,k){
     let c = "";
     for (let p_idx=0; p_idx<p.length; p_idx++){
         const k_idx = p_idx%k.length;
@@ -49,7 +49,7 @@ function encrypt_extended_vigenere(p,k){
     }
     return c
 }
-function decrypt_extended_vigenere(c,k){
+export function decrypt_extended_vigenere(c,k){
     let p = "";
     for (let c_idx=0; c_idx<c.length; c_idx++){
         const k_idx = c_idx%k.length;
@@ -63,7 +63,7 @@ function decrypt_extended_vigenere(c,k){
 
 // Playfair
 function generate_playfair_key_table(k){
-    k = [... new Set(k.toUpperCase().replace(/[J]/g, "").split(""))]
+    k = [...new Set(k.toUpperCase().replace(/[J]/g, "").split(""))]
     // console.log("k =", k)
     let key_chars = "ABCDEFGHIKLMNOPQRSTUVWXYZ".split("");
     // console.log(key_chars)
@@ -90,18 +90,18 @@ function generate_bigram(t, uncommon_letter){
     for (let i = 1; i<t.length; i++){
         var prev = t[i-1]
         var curr = t[i]
-        if (prev == curr && prev != uncommon_letter){
+        if (prev === curr && prev !== uncommon_letter){
             t = [t.slice(0,i), uncommon_letter, t.slice(i)].join('')
         }
         bigram_t += t[i]
-        if (i%2 == 1){
+        if (i%2 === 1){
             bigram_t += " "
         } 
     }
-    if (bigram_t[bigram_t.length-1] == " "){
+    if (bigram_t[bigram_t.length-1] === " "){
         bigram_t = bigram_t.slice(0,bigram_t.length-1)
     }
-    if (t.length%2 == 1){
+    if (t.length%2 === 1){
         t+=uncommon_letter
         bigram_t+=uncommon_letter
     }
@@ -125,22 +125,22 @@ export function encrypt_playfair(p,k){
         let pos_2 = {}
         for (let x = 0; x<key_table.length; x++){
             for (let y=0; y<key_table[0].length; y++){
-                if (key_table[x][y] == letter_1){
+                if (key_table[x][y] === letter_1){
                     pos_1 = {x:x, y:y}
                 }
-                if (key_table[x][y] == letter_2){
+                if (key_table[x][y] === letter_2){
                     pos_2 = {x:x, y:y}
                 }
             }
         }
         let curr_bigram_c = ""
-        if (pos_1.x == pos_2.x){
+        if (pos_1.x === pos_2.x){
             // console.log("== horizontal")
             const y_1 = (pos_1.y + 1) % 5
             const y_2 = (pos_2.y + 1) % 5
             curr_bigram_c += key_table[pos_1.x][y_1]
             curr_bigram_c += key_table[pos_2.x][y_2]
-        } else if (pos_1.y == pos_2.y){
+        } else if (pos_1.y === pos_2.y){
             // console.log("|| vertical")
             const x_1 = (pos_1.x + 1) % 5
             const x_2 = (pos_2.x + 1) % 5
@@ -176,22 +176,22 @@ export function decrypt_playfair(c,k){
         let pos_2 = {}
         for (let x = 0; x<key_table.length; x++){
             for (let y=0; y<key_table[0].length; y++){
-                if (key_table[x][y] == letter_1){
+                if (key_table[x][y] === letter_1){
                     pos_1 = {x:x, y:y}
                 }
-                if (key_table[x][y] == letter_2){
+                if (key_table[x][y] === letter_2){
                     pos_2 = {x:x, y:y}
                 }
             }
         }
         let curr_bigram_p = ""
-        if (pos_1.x == pos_2.x){
+        if (pos_1.x === pos_2.x){
             // console.log("== horizontal")
             const y_1 = (pos_1.y + 5 - 1) % 5
             const y_2 = (pos_2.y + 5 - 1) % 5
             curr_bigram_p += key_table[pos_1.x][y_1]
             curr_bigram_p += key_table[pos_2.x][y_2]
-        } else if (pos_1.y == pos_2.y){
+        } else if (pos_1.y === pos_2.y){
             // console.log("|| vertical")
             const x_1 = (pos_1.x + 5 - 1) % 5
             const x_2 = (pos_2.x + 5 - 1) % 5

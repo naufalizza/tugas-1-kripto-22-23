@@ -6,7 +6,7 @@ key_m terlebih dahulu dipastikan relatif prima terhadap 26
 key_b bebas
 */
 export function encrypt_affine(plaintext, key_m, key_b){
-    plaintext = plaintext.replace(/[^A-Za-z0-9]/g, "")
+    plaintext = plaintext.replace(/[^A-Za-z]/g, "")
     key_m = parseInt(key_m)
     key_b = parseInt(key_b)
     var ciphertext = ""
@@ -30,10 +30,10 @@ key_b bebas
 export function decrypt_affine(ciphertext, key_m, key_b){
     key_m = parseInt(key_m)
     key_b = parseInt(key_b)
-    ciphertext = ciphertext.replace(/[^A-Za-z0-9]/g, "")
+    ciphertext = ciphertext.replace(/[^A-Za-z]/g, "")
     var plaintext = ""
     var inv = modulo_invers(key_m, 26)
-    if(inv == -1){
+    if(inv === -1){
         return plaintext
     }
     //console.log(ciphertext)

@@ -4,7 +4,7 @@ import {num2char, char2num} from "./helper.js"
 plaintext bebas dan key bebas  
 */
 export function encrypt_auto_key(plaintext, key){
-    plaintext = plaintext.replace(/[^A-Za-z0-9]/g, "")
+    plaintext = plaintext.replace(/[^A-Za-z]/g, "")
     var ciphertext = ""
     //console.log(plaintext)
     //console.log(key)
@@ -24,7 +24,7 @@ export function encrypt_auto_key(plaintext, key){
 plaintext bebas dan key bebas  
 */
 export function decrypt_auto_key(ciphertext, key){
-    ciphertext = ciphertext.replace(/[^A-Za-z0-9]/g, "")
+    ciphertext = ciphertext.replace(/[^A-Za-z]/g, "")
     var plaintext = ""
     //console.log(ciphertext)
     //console.log(key)

@@ -11,7 +11,7 @@ export function encrypt_hill(plaintext, key_m){
     if(key_len < 1 || key_len >5){
         return ""
     }
-    plaintext = plaintext.replace(/[^A-Za-z0-9]/g, "")
+    plaintext = plaintext.replace(/[^A-Za-z]/g, "")
     var ciphertext = ""
 
     let tambahan = (key_len-(plaintext.length%key_len))%key_len
@@ -48,7 +48,7 @@ export function decrypt_hill(ciphertext, key_m){
         return ""
     }
     
-    ciphertext = ciphertext.replace(/[^A-Za-z0-9]/g, "")
+    ciphertext = ciphertext.replace(/[^A-Za-z]/g, "")
     var plaintext = ""
     //console.log(ciphertext)
     //console.log(inv, key_len)

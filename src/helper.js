@@ -7,7 +7,7 @@ export function num2char(n){
 export function modulo_invers(x, mod){
     var ret = -1
     for(let i=1;i<mod;i++){
-        if((i*x)%mod==1){
+        if((i*x)%mod===1){
             ret = i
             break
         }
@@ -29,6 +29,15 @@ function gcd(x, y){
 //Fungsi menentukan dua buah bilangan adalah relatif prima atau bukan
 export function relatif_prima(x, y){
     if(x<=0 || y<=0)return false
-    else if(gcd(x,y)==1)return true
+    else if(gcd(x,y)===1)return true
     else return false
+}
+
+export function split_five(st){
+    var x=5
+    while(x<st.length){
+        st=st.slice(0, x) + " " + st.slice(x);
+        x+=6
+    }
+    return st
 }
