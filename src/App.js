@@ -270,14 +270,14 @@ function App() {
       }
       else if(event.target["radioAffineDe"].checked){
         if(isRelativeDe){
-          cipher = decrypt_affine(event.target["plainDe"].value, event.target["keyDeM"].value, event.target["keyEDeB"].value)
+          cipher = decrypt_affine(event.target["plainDe"].value, event.target["keyDeM"].value, event.target["keyDeB"].value)
         }
       }
       else if(event.target["radioHillDe"].checked){
         var tmpList = []
-        for(var i=0;i<list.length;i++){
+        for(var i=0;i<listDe.length;i++){
           var row = []
-          for(var j=0;j<list.length;j++){
+          for(var j=0;j<listDe.length;j++){
             row.push(event.target["cellDe"+i+j].value)
           }
           tmpList.push(row)
@@ -336,9 +336,9 @@ function App() {
         }
         else if(event.target["radioHillDe"].checked){
           var tmpList = []
-          for(var i=0;i<list.length;i++){
+          for(var i=0;i<listDe.length;i++){
             var row = []
-            for(var j=0;j<list.length;j++){
+            for(var j=0;j<listDe.length;j++){
               row.push(event.target["cellDe"+i+j].value)
             }
             tmpList.push(row)
