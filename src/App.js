@@ -284,12 +284,25 @@ function App() {
         }
         var tmpMatrix = new Matrix(tmpList)
         const det = (tmpMatrix.determinant()%26+26)%26
+        var k = modulo_invers(det,26)
         
         if(modulo_invers(det,26)===-1){
           setErrHillDe(true)
         }
         else{
           setErrHillDe(false)
+          var adj = tmpMatrix.adjugate()
+          var tmpAdj = []
+    
+          for(var i=0;i<listDe.length;i++){
+            var row = []
+            var rowMat = adj.sliceRows(i,i+1)
+            for(var j=0;j<listDe.length;j++){
+              row.push((rowMat.get(0,j)*k%26+26)%26)
+            }
+            tmpAdj.push(row)
+          }
+          tmpList = tmpAdj
           cipher = decrypt_hill(event.target["plainDe"].value, tmpList)
         }
       }
@@ -332,12 +345,25 @@ function App() {
           }
           var tmpMatrix = new Matrix(tmpList)
           const det = (tmpMatrix.determinant()%26+26)%26
+          var k = modulo_invers(det,26)
           
           if(modulo_invers(det,26)===-1){
             setErrHillDe(true)
           }
           else{
             setErrHillDe(false)
+            var adj = tmpMatrix.adjugate()
+            var tmpAdj = []
+      
+            for(var i=0;i<listDe.length;i++){
+              var row = []
+              var rowMat = adj.sliceRows(i,i+1)
+              for(var j=0;j<listDe.length;j++){
+                row.push((rowMat.get(0,j)*k%26+26)%26)
+              }
+              tmpAdj.push(row)
+            }
+            tmpList = tmpAdj
             cipher = decrypt_hill(e.target.result, tmpList)
           }
         }
