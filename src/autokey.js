@@ -1,9 +1,5 @@
 import {num2char, char2num} from "./helper.js"
 
-let plaintext = "Azizah gapake h ramadhani"
-let key = "jijah"
-
-
 /* fungsi enkripsi menggunakan auto key
 plaintext bebas dan key bebas  
 */
@@ -43,6 +39,3 @@ export function decrypt_auto_key(ciphertext, key){
     //console.log(plaintext)
     return plaintext
 }
-
-//encrypt_auto_key(plaintext,key)
-//decrypt_auto_key("JHRZHHFIOARKHGAWEKYAZI",key)

@@ -1,16 +1,11 @@
+import {num2char, char2num} from "./helper.js"
 // let plaintext = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
 // const key = "QWERTY"
 let plaintext = "temuui ibu nanti malammxm"
 const key = "soonjy"
 
-function char2num(c){
-    return c.toLowerCase().charCodeAt(0)-97
-}
-function num2char(n){
-    return String.fromCharCode(97+n).toUpperCase()
-}
 
-function encrypt_vigenere(p,k){
+export function encrypt_vigenere(p,k){
     p = p.replace(/[^A-Za-z0-9]/g, "")
     // console.log(p.length)
     // console.log(k.length)
@@ -25,7 +20,7 @@ function encrypt_vigenere(p,k){
     }
     return c
 }
-function decrypt_vigenere(c,k){
+export function decrypt_vigenere(c,k){
     c = c.replace(' ', "")
     // console.log(c.length)
     // console.log(k.length)
@@ -68,8 +63,8 @@ function generate_playfair_key_table(k){
 function generate_bigram(t, uncommon_letter){
     let bigram_t = t[0]
     for (let i = 1; i<t.length; i++){
-        prev = t[i-1]
-        curr = t[i]
+        var prev = t[i-1]
+        var curr = t[i]
         if (prev == curr && prev != uncommon_letter){
             t = [t.slice(0,i), uncommon_letter, t.slice(i)].join('')
         }
@@ -88,7 +83,7 @@ function generate_bigram(t, uncommon_letter){
     bigram_t = bigram_t.split(" ")
     return bigram_t
 }
-function encrypt_playfair(p,k){
+export function encrypt_playfair(p,k){
     const UNCOMMON_LETTER = "X"
     p = p.replace(/[^A-Za-z0-9]/g, "").toUpperCase().replace(/[J]/g, "I")
     const key_table = generate_playfair_key_table(k)
@@ -142,7 +137,7 @@ function encrypt_playfair(p,k){
     }
     return c
 }
-function decrypt_playfair(c,k){
+export function decrypt_playfair(c,k){
     const UNCOMMON_LETTER = ""
     const key_table = generate_playfair_key_table(k)
     const bigram_c = generate_bigram(c, UNCOMMON_LETTER)
